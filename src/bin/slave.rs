@@ -1,0 +1,8 @@
+use spyctl::slave::comms::run_slave;
+
+pub fn main() {
+    let url = "ws://localhost:6969"; // Replace with your WebSocket server URL
+    tokio::runtime::Runtime::new().unwrap().block_on(async {
+        run_slave(url.to_string()).await;
+    });
+}
