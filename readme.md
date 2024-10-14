@@ -16,6 +16,13 @@ A cross-platform surveillance control system built with Rust.
 - The `./target/release/master` and `./target/release/slave` executables will be generated.
 - Run the `master` executable on the master machine and the `slave` executable on the slave machine.
 
+Need to cross compile for another OS? Use the fantastic [Cross](https://github.com/cross-rs/cross) tool! E.g:
+
+```bash
+cargo install cross --git https://github.com/cross-rs/cross
+cross build --bin slave --release --target x86_64-pc-windows-gnu
+```
+
 ## Todo
 
 - [x] Create a master server accepting many slaves WebSocket communcation system
