@@ -25,7 +25,7 @@ cross build --bin slave --release --target x86_64-pc-windows-gnu
 
 ## Todo
 
-- [x] Create a master server accepting many slaves WebSocket communcation system
+- [x] 🕸️ Create a master server accepting many slaves WebSocket communcation system
 - [x] 📺 Add screenshot capture functionality with multiple displays
 - [ ] 🖥️ Add a nice TUI to interact with slaves
 - [ ] 📸 Add webcam capture functionality
