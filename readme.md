@@ -9,6 +9,8 @@ A cross-platform surveillance control system built with Rust.
 - Customizable surveillance state
 - File system integration for storing screenshots
 
+![Moneyshot](readme-img/moneyshot.png)
+
 ## 🚦 Getting Started
 
 - Set the correct IP for master server in `src/bin/slave.rs`.

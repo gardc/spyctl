@@ -1,3 +1,5 @@
+use std::fmt::{self, Display};
+
 use serde::{Deserialize, Serialize};
 use whoami::fallible;
 
@@ -14,7 +16,43 @@ pub struct SystemInfo {
     pub arch: String,
 }
 
-pub fn get_machine_id() -> SystemInfo {
+impl Display for SystemInfo {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        writeln!(f, "{{")?;
+        writeln!(f, "    User's Name: '{}'", self.realname)?;
+        writeln!(f, "    Username: '{}'", self.username)?;
+        writeln!(f, "    User's Languages: {}", self.format_languages())?;
+        writeln!(f, "    Device Name: '{}'", self.devicename)?;
+        writeln!(
+            f,
+            "    Hostname: '{}'",
+            self.hostname.as_deref().unwrap_or("Unknown")
+        )?;
+        writeln!(f, "    Platform: '{}'", self.platform)?;
+        writeln!(f, "    Distribution: '{}'", self.distro)?;
+        writeln!(f, "    Desktop Environment: '{}'", self.desktop_env)?;
+        writeln!(f, "    Architecture: '{}'", self.arch)?;
+        write!(f, "}}")
+    }
+}
+
+impl SystemInfo {
+    fn format_languages(&self) -> String {
+        match &self.langs {
+            Some(langs) if !langs.is_empty() => {
+                let formatted_langs = langs
+                    .iter()
+                    .map(|lang| format!("        '{}'", lang))
+                    .collect::<Vec<_>>()
+                    .join(",\n");
+                format!("{{\n{}\n    }}", formatted_langs)
+            }
+            _ => String::from("{}"),
+        }
+    }
+}
+
+pub fn get_system_info() -> SystemInfo {
     SystemInfo {
         realname: whoami::realname(),
         username: whoami::username(),
@@ -35,7 +73,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_whoami() {
-        let machine_id = get_machine_id();
+        let machine_id = get_system_info();
         assert!(machine_id.realname.len() > 0);
         println!("Machine ID Information:");
         println!("User's Name:           {}", machine_id.realname);
