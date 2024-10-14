@@ -4,7 +4,7 @@ A cross-platform surveillance control system built with Rust.
 
 ## 🚀 Features
 
-- Real-time screen capture
+- Spy features (WIP): screen capture
 - Websocket communication between master and slave
 - Customizable surveillance state
 - File system integration for storing screenshots
