@@ -82,7 +82,11 @@ fn render_logs(app: &App, frame: &mut Frame, area: Rect) {
 
     let log_widget = Paragraph::new(Text::from(logs))
         .block(Block::default().title("Logs").borders(Borders::ALL))
-        .wrap(ratatui::widgets::Wrap { trim: true });
+        .wrap(ratatui::widgets::Wrap { trim: true })
+        .scroll((
+            0,
+            (app.logs.len() as u16).saturating_sub(area.height.saturating_sub(2)),
+        ));
 
     frame.render_widget(log_widget, area);
 }
