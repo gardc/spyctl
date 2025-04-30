@@ -30,6 +30,7 @@ cross build --bin slave --release --target x86_64-pc-windows-gnu
 - [x] 🕸️ Create a master server accepting many slaves WebSocket communcation system
 - [x] 📺 Add screenshot capture functionality with multiple displays and auto encoding to JPEG
 - [x] 🖥️ Add a nice TUI to interact with slaves
+- [ ] 🖥️ Migrate from TUI to egui to interact with slaves
 - [ ] 🔕 Make slave completely silent (remove any visible trace of running)
 - [ ] 📦 Add a build script for easy build/deployment, taking in master IP
 - [ ] 🤖 Make slave install itself persistently
